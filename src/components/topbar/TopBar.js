@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import "./topbar.css";
-import Logo from '../../images/Logo.png';
+import Logo from "../../images/Logo.png";
 
 export default function TopBar() {
+  const user = true;
   return (
     <div className="top">
       <div className="topLeft">
@@ -12,15 +14,48 @@ export default function TopBar() {
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">BERANDA</li>
-          <li className="topListItem">TENTANG</li>
-          <li className="topListItem">KONTAK</li>
-          <li className="topListItem">ARIKEL</li>
-          <li className="topListItem">KELUAR</li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              BERANDA
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              TENTANG
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              KONTAK
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/artikel">
+              ARTIKEL
+            </Link>
+          </li>
+          <li className="topListItem">
+            {user && "KELUAR"}
+          </li>
         </ul>
       </div>
       <div className="topRight">
-        <img className="topImage" src={Logo} alt="" />
+        {user ? (
+          <img className="topImage" src={Logo} alt="" />
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                MASUK
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">
+                DAFTAR
+              </Link>
+            </li>
+          </ul>
+        )}
         <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>
